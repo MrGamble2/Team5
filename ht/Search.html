@@ -47,7 +47,7 @@
                 if(xhr.readyState == 4 && xhr.status == 200){
                     var textRES = xhr.responseText;
                     var fieldNameElement = document.getElementById('textField');
-					localStorage.setItem('books',testRES);
+					localStorage.setItem('books',textRES);
                     fieldNameElement.innerHTML = textRES;
                 }
             }

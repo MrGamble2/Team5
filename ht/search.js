@@ -56,5 +56,6 @@ const getBooks = (query) => {
 
 
 module.exports = {
-	getBooks
+	getBooks,
+	getUnivCourses
 };

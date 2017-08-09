@@ -9,9 +9,13 @@ const getUnivCourses = (query) => {
 	_.each(courses, (c) => {
 		const univName = c.univ;
 		if(univName === univID){
-			const ID = _.find(courses, {univ: univID}).id;
-			const Title = _.find(courses, {univ: univID}).title;
-			const Univ = _.find(courses, {univ: univID}).univ;
+//			const ID = _.find(courses, {univ: univID}).id;
+//			const Title = _.find(courses, {univ: univID}).title;
+//			const Univ = _.find(courses, {univ: univID}).univ;
+
+			const ID = c.id;
+			const Title = c.title;
+			const Univ = c.univ;
 
 			const univCourse = {
 				id: ID,
@@ -35,11 +39,15 @@ const getBooks = (query) => {
 		const id = b.id;
 		if(id === courseID){
 
-			const Title = _.find(books, {id: courseID}).title;
-			const Condition = _.find(books, {id: courseID}).condition;
-			const Price = _.find(books, {id: courseID}).price;
-			const Seller = _.find(books, {id: courseID}).seller;		
+			//const Title = _.find(books, {id: courseID}).title;
+			//const Condition = _.find(books, {id: courseID}).condition;
+			//const Price = _.find(books, {id: courseID}).price;
+			//const Seller = _.find(books, {id: courseID}).seller;		
 		
+			const Title = b.title;
+			const Condition = b.condition;
+			const Price = b.price;
+			const Seller = b.seller;
 
 			const book = {
 				title: Title,
@@ -48,6 +56,8 @@ const getBooks = (query) => {
 				seller: Seller 
 			}
 			response.push(book);
+			
+			console.log(book);
 		}
 	});
 		

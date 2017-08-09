@@ -62,7 +62,6 @@
 
 		    $('#booksForCourseTable td').click(function() {
 			    var rowIndex = $(this).parent().parent().children().index($(this).parent());
-			    alert('Row: ' + rowIndex);
 
 			    var table = document.getElementById('booksForCourseTable');
 			    var book = table.rows[rowIndex + 1].cells[0].innerHTML;
@@ -70,7 +69,8 @@
 			    var buyer = localStorage.getItem("userName");
 			    var buyerEmail = localStorage.getItem("userEmail");
 
-			    alert(book + " " + price + " " + buyer + " " + buyerEmail);
+			    window.location.href = "mailto:" + buyerEmail + "?subject=BuyerRequest&body=" + buyer + " would like to buy " + book + " for " + price;
+
 		    });
 		});
 

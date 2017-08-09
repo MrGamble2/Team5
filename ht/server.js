@@ -15,6 +15,13 @@ server.route([
 		handler:	(request, reply) => {
 			reply(search.getBooks(request.query));
 		}
+	},
+	{
+		method: 'GET',
+		path: '/university',
+		handler: (request, reply) => {
+			reply(search.getUnivCourses(request.query));
+		}
 	}
 ]);
 

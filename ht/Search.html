@@ -109,16 +109,15 @@
 
         </script>
 
-	<div id="booksForCourseTable" class="esg-table__container">
+	<div class="esg-table__container">
 		<div class="esg-table-actions">
 			<div class="esg-h5 esg-table-actions__title">Books
 			</div>
-			<span class="esg-badge esg-badge--success" data-bind="visible: TotalBooks() > 0">3</span>
-			<span class="esg-badge esg-badge--error" data-bind="visible: TotalBooks() <= 0">0</span>
+			<span class="esg-badge esg-badge--success">3</span>
 
 		</div>
 
-		<table class="esg-table">
+		<table id="booksForCourseTable" class="esg-table">
 			<thead class="esg-table-head">
 			<tr class="esg-table-head__row">
 
@@ -139,13 +138,27 @@
 				</th>
 			</tr>
 			</thead>
-			<tbody class="esg-table-body" data-bind="foreach: Books()">
+			<tbody class="esg-table-body"">
 				<tr class="esg-table-body__row">
-		            <td class="esg-table-body__td" colspan="2" data-bind="text: title"></td>
-		            <td class="esg-table-body__td" data-bind="text: condition"></td>
-		            <td class="esg-table-body__td" data-bind="text: formattedPrice"></td>
-		            <td class="esg-table-body__td esg-label esg-label--pending"" data-bind="text: Seller"></td>
-	        	</tr>
+					<td class="esg-table-body__td" colspan="2"> The Title of the First Book</td>
+					<td class="esg-table-body__td">Fanfuckingtastic</td>
+					<td class="esg-table-body__td">$380.87</td>
+					<td class="esg-table-body__td"><span class="esg-label esg-label--pending">Nolan Meeks </span></td>
+					</tr>
+
+					<tr class="esg-table-body__row">
+					<td class="esg-table-body__td" colspan="2"> The Title of the Second Book</td>
+					<td class="esg-table-body__td">Crap</td>
+					<td class="esg-table-body__td">$20</td>
+					<td class="esg-table-body__td"><span class="esg-label esg-label--pending">John Doe </span></td>
+					</tr>
+
+					<tr class="esg-table-body__row">
+					<td class="esg-table-body__td" colspan="2"> The Title of the Third Book</td>
+					<td class="esg-table-body__td">Burned</td>
+					<td class="esg-table-body__td">$5</td>
+					<td class="esg-table-body__td"><span class="esg-label esg-label--pending">Jane Doe </span></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

@@ -30,6 +30,7 @@
 	</div>
 	<div id = "textField"></div>
 	<select id = "dropdown" onchange="fillSearch()"></select>
+
 	<button class="esg-button esg-button--primary" type="button" onclick="GetBook()">Search</button>
     <script type="text/javascript">
     	function addDropDown(json)
@@ -37,6 +38,9 @@
               select = document.getElementById('dropdown');
               
               for(var i = 0; i < json.length; i++){
+              		if(i == 0){
+              			document.getElementById('courseID').value = json[i].id;
+              		}
                   var opt = document.createElement('option');
                   opt.value = json[i].id;
                   opt.innerHTML = json[i].id;
@@ -106,7 +110,7 @@
         </script>
 	<div class="esg-table__container">
 		<div class="esg-table-actions">
-			<div class="esg-h5 esg-table-actions__title">Table Title
+			<div class="esg-h5 esg-table-actions__title">Books
 			</div>
 			<span class="esg-badge esg-badge--draft">3</span>
 

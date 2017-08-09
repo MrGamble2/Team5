@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>Team1</title>
+	<style>
+	</style>
+</head>
+	
+<body onload="getCourse()">
+		<div id = "textField"> </div>
+			CourseID: <input id="sellerEmail" type="text">
+		<button onclick= "email()">Email</button>
+
+	<script type="text/javascript">
+		function getCourse(){
+			document.getElementById("textField").innerHTML = localStorage.getItem("course");
+		}
+		
+		function email(){
+			window.location.href = "mailto:" + document.getElementById('sellerEmail').value + "?subject=BuyerRequest&body=" + document.getElementById('textField').text;
+		}
+		
+
+	</script>
+
+</body>
+</html>

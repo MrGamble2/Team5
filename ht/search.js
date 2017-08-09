@@ -24,6 +24,7 @@ const getUnivCourses = (query) => {
 	
 	return response;
 }
+
 const getBooks = (query) => {
 	const courseID = query.id;
 	console.log(courseID);

@@ -29,9 +29,25 @@
 		<input id="courseID" class="esg-form__input" type="text" placeholder="Search for a Course" id="email"/>
 	</div>
 	<div id = "textField"></div>
-	
+	<select id = "dropdown" onchange="fillSearch()"></select>
 	<button class="esg-button esg-button--primary" type="button" onclick="GetBook()">Search</button>
     <script type="text/javascript">
+    	function addDropDown(json)
+          {
+              select = document.getElementById('dropdown');
+              
+              for(var i = 0; i < json.length; i++){
+                  var opt = document.createElement('option');
+                  opt.value = json[i].id;
+                  opt.innerHTML = json[i].id;
+                  select.appendChild(opt);
+             }
+         }
+
+         function fillSearch(){
+         	document.getElementById('courseID').value = document.getElementById('dropdown').value;
+         }
+
         function GetBook(){
             var textresponse = requestAPI();
             var jsonresponse = JSON.parse(localStorage.getItem("books"));
@@ -43,8 +59,9 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function(){
                 if(xhr.readyState == 4 && xhr.status == 200){
-                    textRES = xhr.responseText;
+                    textRES = JSON.parse(xhr.responseText);
 					localStorage.setItem('courses',textRES);
+					addDropDown(textRES);
                 }
             }
 			xhr.open('GET', url);

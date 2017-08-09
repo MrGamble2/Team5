@@ -52,7 +52,6 @@ const getBooks = (query) => {
 	});
 		
 	return response;
->>>>>>> 9d9427e601a8c38960730260a02b1a18310e1158
 }
 
 

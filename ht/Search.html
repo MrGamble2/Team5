@@ -9,6 +9,7 @@
 
 <link href="https://cdn.elluciancloud.com/assets/1.1.7/css/ellucian-design-system-ltr.min.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="style.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <div class="dropdown">
@@ -51,11 +52,16 @@
             }
             xhr.open('GET', url);
             xhr.send();
-            return textRES;
         }
         function PopulateTables(jsonresponse){
         
         }
+
+        $('td').click(function(){
+            var colIndex = $(this).parent().children().index($(this));
+            var rowIndex = $(this).parent().parent().children().index($(this).parent());
+            alert('Row: ' + rowIndex + ', Column: ' + colIndex);
+        });
 
         </script>
 	<div class="esg-table__container">

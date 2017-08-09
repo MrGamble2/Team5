@@ -20,23 +20,28 @@ con.connect(function(err){
 const getBooks = (query) => {
 	const courseID = query.id;
 	console.log(courseID);
-	return "Backend reveived " + courseID;
+	
+	var book = "Not found";
 
-/*	sqlQuery(courseID,function(result){	
-		var books = "not found";	
-		console.log(result);
-		return result;
-	});
-*/
-}
-
-function sqlQuery(courseID, callback){
-	con.query('SELECT * FROM account WHERE CourseID="'+courseID+'"', function(err, result){
+	con.query('SELECT * FROM account', function(err, result){
 		if(err) throw err;
-		result = "Result: " + result[0].CourseTitle+" "+result[0].CourseID+" "+result[0].Price+" "+result[0].Seller;
-		callback(result);
+		book = "Result: " + result[0].CourseTitle+" "+result[0].CourseID+" "+result[0].Price+" "+result[0].Seller;
+//		console.log(book);
+		console.log("1");
+		
 	});
+
+//	var sleep = require('sleep');
+//	sleep.sleep(5); 
+	
+		console.log(book);
+		while(book === "Not found") {}
+		return book;
+	//return "Backend reveived " + courseID;
+
+
 }
+
 
 module.exports = {
 	getBooks

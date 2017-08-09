@@ -1,0 +1,23 @@
+[
+	{
+		"title": "Book Title 1",
+		"id":	"CS310",
+		"condition": "Good",
+		"price": 60,
+		"seller": "ShengTa"
+	},
+	{
+		"title": "Book Title 2",
+		"id":	"CS100",
+		"condition": "Good",
+		"price": 30,
+		"seller": "ShengTa"
+	},
+	{
+		"title": "Book Title 3",
+		"id":	"CS100",
+		"condition": "Good",
+		"price": 40,
+		"seller": "ShengTa"
+	}
+]

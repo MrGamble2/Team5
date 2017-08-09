@@ -1,0 +1,22 @@
+[
+	{
+		"id": "CS100",
+		"title": "Intro to java",
+		"univ": "University1"
+	},
+	{
+		"id": "CS200",
+		"title": "C Programming",
+		"univ": "University1"
+	},
+	{
+		"id": "CS300",
+		"title": "Data Structures",
+		"univ": "University1"
+	},
+	{
+		"id": "CS400",
+		"title": "Algorithm",
+		"univ": "University2"
+	}
+]

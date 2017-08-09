@@ -1,9 +1,9 @@
 const _ = require('lodash');
-const mysql = require('mysql');
+//const mysql = require('mysql');
 
 
 
-var con = mysql.createConnection({
+/*var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     database: "myDB"
@@ -15,7 +15,7 @@ con.connect(function(err){
         return;
     }
     console.log("Database connection established!");
-});
+});*/
 
 const getBooks = (query) => {
 	const courseID = query.id;

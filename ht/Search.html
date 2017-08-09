@@ -57,15 +57,18 @@
         
         }
         </script>
-	<div class="esg-table__container">
+
+	<div id="booksForCourseTable" class="esg-table__container">
 		<div class="esg-table-actions">
 			<div class="esg-h5 esg-table-actions__title">Books for Course:
 			</div>
-			<span class="esg-badge esg-badge--success">3</span>
+			<span class="esg-badge esg-badge--success" data-bind="visible: TotalBooks() > 0">3</span>
+			<span class="esg-badge esg-badge--error" data-bind="visible: TotalBooks() <= 0">0</span>
 
 		</div>
-	<table id="booksForCourseTable" class="esg-table">
-		<thead class="esg-table-head">
+
+		<table class="esg-table">
+			<thead class="esg-table-head">
 			<tr class="esg-table-head__row">
 
 				<th class="esg-table-head__th" colspan="2">
@@ -84,41 +87,16 @@
 					<button class="esg-table-head__button" id="dataTableFilter4" data-placeholder="false" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Contact Seller</button>
 				</th>
 			</tr>
-		</thead>
-	<tbody class="esg-table-body">
-
-	<tr class="esg-table-body__row">
-	<td class="esg-table-body__td" colspan="2"> The Title of the First Book</td>
-	<td class="esg-table-body__td">Fanfuckingtastic</td>
-	<td class="esg-table-body__td">$380.87</td>
-	<td class="esg-table-body__td"><span class="esg-label esg-label--pending">Nolan Meeks </span><span class="esg-table__icon--detail esg-icon__container" aria-hidden="true">
-	<svg class="esg-icon esg-icon--up">
-	<use xlink:href="#icon-more"></use>
-	</svg></span></td>
-	</tr>
-
-	<tr class="esg-table-body__row">
-	<td class="esg-table-body__td" colspan="2"> The Title of the Second Book</td>
-	<td class="esg-table-body__td">Crap</td>
-	<td class="esg-table-body__td">$20</td>
-	<td class="esg-table-body__td"><span class="esg-label esg-label--pending">John Doe </span><span class="esg-table__icon--detail esg-icon__container" aria-hidden="true">
-	<svg class="esg-icon esg-icon--up">
-	<use xlink:href="#icon-more"></use>
-	</svg></span></td>
-	</tr>
-
-	<tr class="esg-table-body__row">
-	<td class="esg-table-body__td" colspan="2"> The Title of the Third Book</td>
-	<td class="esg-table-body__td">Burned</td>
-	<td class="esg-table-body__td">$5</td>
-	<td class="esg-table-body__td"><span class="esg-label esg-label--pending">Jane Doe </span><span class="esg-table__icon--detail esg-icon__container" aria-hidden="true">
-	<svg class="esg-icon esg-icon--up">
-	<use xlink:href="#icon-more"></use>
-	</svg></span></td>
-	</tr>
-
-	</tbody>
-	</table>
+			</thead>
+			<tbody class="esg-table-body" data-bind="foreach: Books()">
+				<tr class="esg-table-body__row">
+		            <td class="esg-table-body__td" colspan="2" data-bind="text: title"></td>
+		            <td class="esg-table-body__td" data-bind="text: condition"></td>
+		            <td class="esg-table-body__td" data-bind="text: formattedPrice"></td>
+		            <td class="esg-table-body__td esg-label esg-label--pending"" data-bind="text: Seller"></td>
+	        	</tr>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>

@@ -34,7 +34,7 @@
     <script type="text/javascript">
         function GetBook(){
             var textresponse = requestAPI();
-            var jsonresponse = JSON.parse(textresponse);
+            var jsonresponse = JSON.parse(localStorage.getItem("books"));
             PopulateTables();
         }
         
@@ -47,6 +47,7 @@
                 if(xhr.readyState == 4 && xhr.status == 200){
                     var textRES = xhr.responseText;
                     var fieldNameElement = document.getElementById('textField');
+					localStorage.setItem('books',testRES);
                     fieldNameElement.innerHTML = textRES;
                 }
             }

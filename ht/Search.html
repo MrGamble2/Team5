@@ -48,6 +48,34 @@
              }
          }
 
+         function addRows(json){
+         	var table = document.getElementById('booksForCourseTable');
+
+         	table.rows[1].cells[0].innerHTML = ""
+			    table.rows[1].cells[1].innerHTML = "";
+			    table.rows[1].cells[2].innerHTML = "";
+			    table.rows[1].cells[3].innerHTML = "";
+
+			    table.rows[2].cells[0].innerHTML = ""
+			    table.rows[2].cells[1].innerHTML = "";
+			    table.rows[2].cells[2].innerHTML = "";
+			    table.rows[2].cells[3].innerHTML = "";
+
+			    table.rows[3].cells[0].innerHTML = ""
+			    table.rows[3].cells[1].innerHTML = "";
+			    table.rows[3].cells[2].innerHTML = "";
+			    table.rows[3].cells[3].innerHTML = "";
+
+
+
+         	for(var i = 0; i < json.length; i++){
+			    table.rows[i + 1].cells[0].innerHTML = json[i].title;
+			    table.rows[i + 1].cells[1].innerHTML = json[i].condition;
+			    table.rows[i + 1].cells[2].innerHTML = json[i].price;
+			    table.rows[i + 1].cells[3].innerHTML = json[i].seller;
+            }
+         }
+
          function fillSearch(){
          	document.getElementById('courseID').value = document.getElementById('dropdown').value;
          }
@@ -80,8 +108,10 @@
                 if(xhr.readyState == 4 && xhr.status == 200){
                     var textRES = xhr.responseText;
                     var fieldNameElement = document.getElementById('textField');
-					localStorage.setItem('books',textRES);
+					var bookJSON = JSON.parse(textRES);
                     fieldNameElement.innerHTML = textRES;
+                    localStorage.setItem('books', textRES);
+                    addRows(bookJSON);
                 }
             }
             xhr.open('GET', url);
@@ -140,24 +170,24 @@
 			</thead>
 			<tbody class="esg-table-body"">
 				<tr class="esg-table-body__row">
-					<td class="esg-table-body__td" colspan="2"> The Title of the First Book</td>
-					<td class="esg-table-body__td">Fanfuckingtastic</td>
-					<td class="esg-table-body__td">$380.87</td>
-					<td class="esg-table-body__td"><span class="esg-label esg-label--pending">Nolan Meeks </span></td>
+					<td class="esg-table-body__td" colspan="2"> </td>
+					<td class="esg-table-body__td"></td>
+					<td class="esg-table-body__td"></td>
+					<td class="esg-table-body__td"><span class="esg-label esg-label--pending"> </span></td>
 					</tr>
 
 					<tr class="esg-table-body__row">
-					<td class="esg-table-body__td" colspan="2"> The Title of the Second Book</td>
-					<td class="esg-table-body__td">Crap</td>
-					<td class="esg-table-body__td">$20</td>
-					<td class="esg-table-body__td"><span class="esg-label esg-label--pending">John Doe </span></td>
+					<td class="esg-table-body__td" colspan="2"> </td>
+					<td class="esg-table-body__td"></td>
+					<td class="esg-table-body__td"></td>
+					<td class="esg-table-body__td"><span class="esg-label esg-label--pending"></span></td>
 					</tr>
 
 					<tr class="esg-table-body__row">
-					<td class="esg-table-body__td" colspan="2"> The Title of the Third Book</td>
-					<td class="esg-table-body__td">Burned</td>
-					<td class="esg-table-body__td">$5</td>
-					<td class="esg-table-body__td"><span class="esg-label esg-label--pending">Jane Doe </span></td>
+					<td class="esg-table-body__td" colspan="2"></td>
+					<td class="esg-table-body__td"></td>
+					<td class="esg-table-body__td"></td>
+					<td class="esg-table-body__td"><span class="esg-label esg-label--pending"> </span></td>
 				</tr>
 			</tbody>
 		</table>

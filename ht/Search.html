@@ -29,7 +29,6 @@
 		<label class="esg-form__label esg-is-required" for="email">Course Search:</label>
 		<input id="courseID" class="esg-form__input" type="text" placeholder="Search for a Course" id="email"/>
 	</div>
-	<div id = "textField"></div>
 	<select id = "dropdown" onchange="fillSearch()"></select>
 
 	<button class="esg-button esg-button--primary" type="button" onclick="GetBook()">Search</button>
@@ -47,6 +46,34 @@
                   opt.innerHTML = json[i].id;
                   select.appendChild(opt);
              }
+         }
+
+         function addRows(json){
+         	var table = document.getElementById('booksForCourseTable');
+
+         	table.rows[1].cells[0].innerHTML = ""
+			    table.rows[1].cells[1].innerHTML = "";
+			    table.rows[1].cells[2].innerHTML = "";
+			    table.rows[1].cells[3].innerHTML = "";
+
+			    table.rows[2].cells[0].innerHTML = ""
+			    table.rows[2].cells[1].innerHTML = "";
+			    table.rows[2].cells[2].innerHTML = "";
+			    table.rows[2].cells[3].innerHTML = "";
+
+			    table.rows[3].cells[0].innerHTML = ""
+			    table.rows[3].cells[1].innerHTML = "";
+			    table.rows[3].cells[2].innerHTML = "";
+			    table.rows[3].cells[3].innerHTML = "";
+
+
+
+         	for(var i = 0; i < json.length; i++){
+			    table.rows[i + 1].cells[0].innerHTML = json[i].title;
+			    table.rows[i + 1].cells[1].innerHTML = json[i].condition;
+			    table.rows[i + 1].cells[2].innerHTML = json[i].price;
+			    table.rows[i + 1].cells[3].innerHTML = json[i].seller;
+            }
          }
 
          function fillSearch(){
@@ -81,8 +108,9 @@
                 if(xhr.readyState == 4 && xhr.status == 200){
                     var textRES = xhr.responseText;
                     var fieldNameElement = document.getElementById('textField');
-					localStorage.setItem('books',textRES);
-                    fieldNameElement.innerHTML = textRES;
+					var bookJSON = JSON.parse(textRES);
+                    localStorage.setItem('books', textRES);
+                    addRows(bookJSON);
                 }
             }
             xhr.open('GET', url);
@@ -114,8 +142,6 @@
 		<div class="esg-table-actions">
 			<div class="esg-h5 esg-table-actions__title">Books
 			</div>
-			<span class="esg-badge esg-badge--success" data-bind="visible: TotalBooks() > 0">3</span>
-			<span class="esg-badge esg-badge--error" data-bind="visible: TotalBooks() <= 0">0</span>
 
 		</div>
 

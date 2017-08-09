@@ -61,9 +61,16 @@
         $(document).ready(function() {
 
 		    $('#booksForCourseTable td').click(function() {
-		        var colIndex = $(this).parent().children().index($(this));
 			    var rowIndex = $(this).parent().parent().children().index($(this).parent());
-			    alert('Row: ' + rowIndex + ', Column: ' + colIndex);
+			    alert('Row: ' + rowIndex);
+
+			    var table = document.getElementById('booksForCourseTable');
+			    var book = table.rows[rowIndex + 1].cells[0].innerHTML;
+			    var price = table.rows[rowIndex + 1].cells[2].innerHTML;
+			    var buyer = localStorage.getItem("userName");
+			    var buyerEmail = localStorage.getItem("userEmail");
+
+			    alert(book + " " + price + " " + buyer + " " + buyerEmail);
 		    });
 		});
 

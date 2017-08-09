@@ -27,6 +27,8 @@
 					var textRES = xhr.responseText;
 					var fieldNameElement = document.getElementById('textField');
 					fieldNameElement.innerHTML = textRES;
+					localStorage.setItem("course", "cis390");
+					window.location = 'bookList.html';
 				}
 			}
 			xhr.open('GET', url);

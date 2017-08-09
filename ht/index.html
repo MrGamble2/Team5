@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title>Team1</title>
+	<style>
+	</style>
+</head>
+	
+<body>
+		<div id = "textField">Team1</div>
+			CourseID: <input id="courseID" type="text">
+		<button onclick= "start()">Search</button>
+
+	<script type="text/javascript">
+		function start(){
+			requestAPI();
+		}
+		
+		function requestAPI(){
+			var courseID = document.getElementById('courseID').value;
+			
+
+			var url = "http://localhost:3000/book?id="+courseID;
+			var xhr = new XMLHttpRequest();
+	
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					var textRES = xhr.responseText;
+					var fieldNameElement = document.getElementById('textField');
+					fieldNameElement.innerHTML = textRES;
+				}
+			}
+			xhr.open('GET', url);
+			xhr.send();
+		}
+
+	</script>
+
+</body>
+</html>

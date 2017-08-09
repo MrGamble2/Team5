@@ -10,6 +10,7 @@
 <link href="https://cdn.elluciancloud.com/assets/1.1.7/css/ellucian-design-system-ltr.min.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://knockoutjs.com/downloads/knockout-3.0.0.debug.js" type="text/javascript"></script>
 </head>
 
 <div class="dropdown">
@@ -109,7 +110,7 @@
 
         </script>
 
-	<div id="booksForCourseTable" class="esg-table__container">
+	<div id="booksForCourseTableContainer" class="esg-table__container">
 		<div class="esg-table-actions">
 			<div class="esg-h5 esg-table-actions__title">Books
 			</div>
@@ -118,7 +119,7 @@
 
 		</div>
 
-		<table class="esg-table">
+		<table id="booksForCourseTable" class="esg-table">
 			<thead class="esg-table-head">
 			<tr class="esg-table-head__row">
 
@@ -139,15 +140,51 @@
 				</th>
 			</tr>
 			</thead>
-			<tbody class="esg-table-body" data-bind="foreach: Books()">
+			<tbody class="esg-table-body" data-bind="foreach: Books">
 				<tr class="esg-table-body__row">
 		            <td class="esg-table-body__td" colspan="2" data-bind="text: title"></td>
 		            <td class="esg-table-body__td" data-bind="text: condition"></td>
 		            <td class="esg-table-body__td" data-bind="text: formattedPrice"></td>
-		            <td class="esg-table-body__td esg-label esg-label--pending"" data-bind="text: Seller"></td>
+		            <td class="esg-table-body__td esg-label esg-label--pending"" data-bind="text: seller"></td>
 	        	</tr>
 			</tbody>
 		</table>
 	</div>
 </body>
+<script>
+function BookToSell(title, condition, price, seller) {
+    var self = this;
+    self.title = title;
+    self.condition = condition;
+    self.price = price;
+    self.seller = seller;
+
+    self.formattedPrice = ko.computed(function() {
+        var bookPrice = self.price;
+        return "$" + bookPrice;
+    });
+}
+
+function ViewModel() {
+    var self = this;
+
+    var allBooks = localStorage.getItem('books');
+    var myJson = JSON.parse(allBooks);
+    self.Books = ko.observableArray();
+    self.MakeBooks = ko.computed(function(){
+    	for(var x = 0; x < myJson.length; x++){
+    		self.Books.push(new BookToSell(myJson[x].title, myJson[x].condition, myJson[x].price, myJson[x].seller));
+    	}
+        
+    });
+
+    self.TotalBooks = ko.computed(function() {
+        var total = self.Books().length;
+    })
+}
+
+viewModelInstance = new ViewModel();
+ko.applyBindings(viewModelInstance, document.getElementById("booksForCourseTableContainer"));
+</script>
 </html>
+

@@ -8,8 +8,15 @@
 
 <link href="https://cdn.elluciancloud.com/assets/1.1.7/css/ellucian-design-system-ltr.min.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="style.css" />
+<script>
+	function setUniv(){
+		localStorage.setItem("university", "University1");
+		alert(localStorage.getItem("university"));
+		location.href='Search.html';
+	}
+	
+</script>
 </head>
-
 <div class="esg-form__group">
 	<label class="esg-form__label esg-is-required" for="email">User Email:</label>
 	<input class="esg-form__input" type="text" placeholder="Enter your Email" id="email"/>
@@ -18,5 +25,4 @@
 	<label class="esg-form__label esg-is-required" for="password">Password:</label>
 	<input class="esg-form__input" type="password" required="required" placeholder="Enter your password" id="password"/>
 </div>
-<script></script> 
-<button class="esg-button esg-button--primary" type="button" onclick="location.href='Search.html'">Login</button>
+<button class="esg-button esg-button--primary" type="button" onclick="setUniv()">Login</button>

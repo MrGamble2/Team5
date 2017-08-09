@@ -23,13 +23,13 @@
   </div>
 </div>
 
-<body>
+<body onload="GetCourses()">
 	<div class="esg-form__group">
 		<label class="esg-form__label esg-is-required" for="email">Course Search:</label>
 		<input id="courseID" class="esg-form__input" type="text" placeholder="Search for a Course" id="email"/>
 	</div>
 	<div id = "textField"></div>
-
+	
 	<button class="esg-button esg-button--primary" type="button" onclick="GetBook()">Search</button>
     <script type="text/javascript">
         function GetBook(){
@@ -37,7 +37,19 @@
             var jsonresponse = JSON.parse(localStorage.getItem("books"));
             PopulateTables();
         }
-        
+        function GetCourses(){
+			var userUni = localStorage.getItem('university');
+			var url = "http://localhost:3000/university?univName="+userUni;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    textRES = xhr.responseText;
+					localStorage.setItem('courses',textRES);
+                }
+            }
+			xhr.open('GET', url);
+            xhr.send();
+		}
         function requestAPI(){
             var courseID = document.getElementById('courseID').value;
             var url = "http://localhost:3000/book?id="+courseID;

@@ -58,11 +58,14 @@
         
         }
 
-        $('td').click(function(){
-            var colIndex = $(this).parent().children().index($(this));
-            var rowIndex = $(this).parent().parent().children().index($(this).parent());
-            alert('Row: ' + rowIndex + ', Column: ' + colIndex);
-        });
+        $(document).ready(function() {
+
+		    $('#booksForCourseTable td').click(function() {
+		        var colIndex = $(this).parent().children().index($(this));
+			    var rowIndex = $(this).parent().parent().children().index($(this).parent());
+			    alert('Row: ' + rowIndex + ', Column: ' + colIndex);
+		    });
+		});
 
         </script>
 	<div class="esg-table__container">

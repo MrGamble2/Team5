@@ -9,6 +9,7 @@
 
 <link href="https://cdn.elluciancloud.com/assets/1.1.7/css/ellucian-design-system-ltr.min.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="style.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <div class="dropdown">
@@ -22,21 +23,50 @@
   </div>
 </div>
 
-<body>
+<body onload="GetCourses()">
 	<div class="esg-form__group">
 		<label class="esg-form__label esg-is-required" for="email">Course Search:</label>
 		<input id="courseID" class="esg-form__input" type="text" placeholder="Search for a Course" id="email"/>
 	</div>
 	<div id = "textField"></div>
-
+	<select id = "dropdown" onchange="fillSearch()"></select>
 	<button class="esg-button esg-button--primary" type="button" onclick="GetBook()">Search</button>
     <script type="text/javascript">
+    	function addDropDown(json)
+          {
+              select = document.getElementById('dropdown');
+              
+              for(var i = 0; i < json.length; i++){
+                  var opt = document.createElement('option');
+                  opt.value = json[i].id;
+                  opt.innerHTML = json[i].id;
+                  select.appendChild(opt);
+             }
+         }
+
+         function fillSearch(){
+         	document.getElementById('courseID').value = document.getElementById('dropdown').value;
+         }
+
         function GetBook(){
             var textresponse = requestAPI();
-            var jsonresponse = JSON.parse(textresponse);
+            var jsonresponse = JSON.parse(localStorage.getItem("books"));
             PopulateTables();
         }
-        
+        function GetCourses(){
+			var userUni = localStorage.getItem('university');
+			var url = "http://localhost:3000/university?univName="+userUni;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    textRES = JSON.parse(xhr.responseText);
+					localStorage.setItem('courses',textRES);
+					addDropDown(textRES);
+                }
+            }
+			xhr.open('GET', url);
+            xhr.send();
+		}
         function requestAPI(){
             var courseID = document.getElementById('courseID').value;
             var url = "http://localhost:3000/book?id="+courseID;
@@ -46,16 +76,33 @@
                 if(xhr.readyState == 4 && xhr.status == 200){
                     var textRES = xhr.responseText;
                     var fieldNameElement = document.getElementById('textField');
+					localStorage.setItem('books',textRES);
                     fieldNameElement.innerHTML = textRES;
                 }
             }
             xhr.open('GET', url);
             xhr.send();
-            return textRES;
         }
         function PopulateTables(jsonresponse){
         
         }
+
+        $(document).ready(function() {
+
+		    $('#booksForCourseTable td').click(function() {
+			    var rowIndex = $(this).parent().parent().children().index($(this).parent());
+
+			    var table = document.getElementById('booksForCourseTable');
+			    var book = table.rows[rowIndex + 1].cells[0].innerHTML;
+			    var price = table.rows[rowIndex + 1].cells[2].innerHTML;
+			    var buyer = localStorage.getItem("userName");
+			    var buyerEmail = localStorage.getItem("userEmail");
+
+			    window.location.href = "mailto:" + buyerEmail + "?subject=BuyerRequest&body=" + buyer + " would like to buy " + book + " for " + price;
+
+		    });
+		});
+
         </script>
 
 	<div id="booksForCourseTable" class="esg-table__container">

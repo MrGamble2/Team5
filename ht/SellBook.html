@@ -1,5 +1,11 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link href="your-app-css">
+<!-- Ellucian Design System -->
+<link href=".../ellucian-design-system-ltr.css">
+<!-- Your custom extensions -->
+<link href="style.css">
+<link href="https://cdn.elluciancloud.com/assets/1.1.7/css/ellucian-design-system-ltr.min.css" rel="stylesheet"/>
 </head>
 <div class="dropdown">
   <button class="dropbtn">Navigation</button>
@@ -12,3 +18,37 @@
   </div>
 </div>
 
+<div class="esg-form__group">
+	<label class="esg-form__label esg-is-required" for="price">Price:</label>
+	<input class="esg-form__input" type="text" placeholder="" id="price"/>
+</div>
+<div class="esg-form__group">
+	<label class="esg-form__label esg-is-required" for="condition">Condition:</label>
+	<input class="esg-form__input" type="text" required="required" placeholder="" id="condition"/>
+</div>
+<div class="esg-form__group">
+	<label class="esg-form__label esg-is-required" for="isbn">ISBN:</label>
+	<input class="esg-form__input" type="text" placeholder="" id="isbn"/>
+</div>
+<div class="esg-form__group">
+	<label class="esg-form__label esg-is-required" for="title">Title:</label>
+	<input class="esg-form__input" type="text" required="required" placeholder="" id="title"/>
+</div>
+<div class="esg-form__group">
+	<label class="esg-form__label esg-is-required" for="edition">Edition:</label>
+	<input class="esg-form__input" type="text" placeholder="" id="edition"/>
+</div>
+<div class="esg-form__group">
+	<label class="esg-form__label esg-is-required" for="publisher">Publisher:</label>
+	<input class="esg-form__input" type="text" required="required" placeholder="" id="publisher"/>
+</div>
+<div class="esg-form__group">
+	<label class="esg-form__label esg-is-required" for="author">Author:</label>
+	<input class="esg-form__input" type="text" placeholder="" id="author"/>
+</div>
+<div class="esg-form__group">
+	<label class="esg-form__label esg-is-required" for="comments">Comments:</label>
+	<input class="esg-form__input" type="text" required="required" placeholder="" id="comments"/>
+</div>
+
+<button class="esg-button esg-button--primary" type="button">Add Book</button>

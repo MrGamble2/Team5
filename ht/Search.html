@@ -27,35 +27,37 @@
 		<label class="esg-form__label esg-is-required" for="email">User Email:</label>
 		<input class="esg-form__input" type="text" placeholder="Search for a Course" id="email"/>
 	</div>
-<div id = "textField">Team1</div>
-			CourseID: <input id="courseID" type="text">
-	<button class="esg-button esg-button--primary" type="button" onclick="start()">Search</button>
+	<div id = "textField">Team1</div>
+	CourseID: <input id="courseID" type="text">
 
-
-	<script type="text/javascript">
-		function start(){
-			requestAPI();
-		}
-		
-		function requestAPI(){
-			var courseID = document.getElementById('courseID').value;
-			
-
-			var url = "http://localhost:3000/book?id="+courseID;
-			var xhr = new XMLHttpRequest();
-	
-			xhr.onreadystatechange = function(){
-				if(xhr.readyState == 4 && xhr.status == 200){
-					var textRES = xhr.responseText;
-					var fieldNameElement = document.getElementById('textField');
-					fieldNameElement.innerHTML = textRES;
-				}
-			}
-			xhr.open('GET', url);
-			xhr.send();
-		}
-
-	</script>
+	<button class="esg-button esg-button--primary" type="button" onclick="GetBook()">Search</button>
+    <script type="text/javascript">
+        function GetBook(){
+            var textresponse = requestAPI();
+            var jsonresponse = JSON.parse(textresponse);
+            PopulateTables();
+        }
+        
+        function requestAPI(){
+            var courseID = document.getElementById('courseID').value;
+            var url = "http://localhost:3000/book?id="+courseID;
+            var xhr = new XMLHttpRequest();
+    
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var textRES = xhr.responseText;
+                    var fieldNameElement = document.getElementById('textField');
+                    fieldNameElement.innerHTML = textRES;
+                }
+            }
+            xhr.open('GET', url);
+            xhr.send();
+            return textRes;
+        }
+        function PopulateTables(jsonresponse){
+        
+        }
+        </script>
 <div class="esg-table__container">
 <div class="esg-table-actions">
 <div class="esg-h5 esg-table-actions__title">Table Title</div><span class="esg-badge esg-badge--draft">148</span><span class="esg-table-actions__form--right"><span class="esg-table-actions__form-item" id="tableFilter">

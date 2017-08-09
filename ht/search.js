@@ -1,45 +1,56 @@
 const _ = require('lodash');
-const mysql = require('mysql');
+const books = require('./data/books');
+const courses = require('./data/courses');
 
+const getUnivCourses = (query) => {
+	const univID = query.univName;
+	const response = [];
 
+	_.each(courses, (c) => {
+		const univName = c.univ;
+		if(univName === univID){
+			const ID = _.find(courses, {univ: univID}).id;
+			const Title = _.find(courses, {univ: univID}).title;
+			const Univ = _.find(courses, {univ: univID}).univ;
 
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    database: "myDB"
-});
-
-con.connect(function(err){
-    if(err){
-        console.log("Error connecting to Db");
-        return;
-    }
-    console.log("Database connection established!");
-});
-
+			const univCourse = {
+				id: ID,
+				title: Title,
+				univ: Univ
+			}
+			response.push(univCourse);
+		}
+	});
+	
+	return response;
+}
 const getBooks = (query) => {
 	const courseID = query.id;
 	console.log(courseID);
 	
-	var book = "Not found";
+	const response = [];
 
-	con.query('SELECT * FROM account', function(err, result){
-		if(err) throw err;
-		book = "Result: " + result[0].CourseTitle+" "+result[0].CourseID+" "+result[0].Price+" "+result[0].Seller;
-//		console.log(book);
-		console.log("1");
+	_.each(books, (b) => {
+		const id = b.id;
+		if(id === courseID){
+
+			const Title = _.find(books, {id: courseID}).title;
+			const Condition = _.find(books, {id: courseID}).condition;
+			const Price = _.find(books, {id: courseID}).price;
+			const Seller = _.find(books, {id: courseID}).seller;		
 		
+
+			const book = {
+				title: Title,
+				condition: Condition,
+				price: Price,
+				seller: Seller 
+			}
+			response.push(book);
+		}
 	});
-
-//	var sleep = require('sleep');
-//	sleep.sleep(5); 
-	
-		console.log(book);
-		while(book === "Not found") {}
-		return book;
-	//return "Backend reveived " + courseID;
-
-
+		
+	return response;
 }
 
 

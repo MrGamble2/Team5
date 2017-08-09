@@ -1,0 +1,6 @@
+CREATE TABLE account(
+	CourseTitle		varchar(255),
+	CourseID		varchar(255),
+	Price			int NOT NULL,
+	Seller			varchar(255)
+);

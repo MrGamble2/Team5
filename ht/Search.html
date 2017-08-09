@@ -1,0 +1,245 @@
+<html>
+<head>
+<!-- Your application's stylesheet -->
+<link href="your-app-css">
+<!-- Ellucian Design System -->
+<link href=".../ellucian-design-system-ltr.css">
+<!-- Your custom extensions -->
+<link href="style.css">
+
+<link href="https://cdn.elluciancloud.com/assets/1.1.7/css/ellucian-design-system-ltr.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<div class="dropdown">
+  <button class="dropbtn">Navigation</button>
+  <div class="dropdown-content">
+    <a href="Account.html">My Account</a>
+    <a href="Search.html">Buy Book</a>
+    <a href="SellBook.html">Sell Book</a>
+	<a href="MyBooks.html">My Books</a>
+	<a href="Login.html">Log Out</a>
+  </div>
+</div>
+
+<body>
+	<div class="esg-form__group">
+		<label class="esg-form__label esg-is-required" for="email">User Email:</label>
+		<input class="esg-form__input" type="text" placeholder="Search for a Course" id="email"/>
+	</div>
+<div id = "textField">Team1</div>
+			CourseID: <input id="courseID" type="text">
+	<button class="esg-button esg-button--primary" type="button" onclick="start()">Search</button>
+
+
+	<script type="text/javascript">
+		function start(){
+			requestAPI();
+		}
+		
+		function requestAPI(){
+			var courseID = document.getElementById('courseID').value;
+			
+
+			var url = "http://localhost:3000/book?id="+courseID;
+			var xhr = new XMLHttpRequest();
+	
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					var textRES = xhr.responseText;
+					var fieldNameElement = document.getElementById('textField');
+					fieldNameElement.innerHTML = textRES;
+				}
+			}
+			xhr.open('GET', url);
+			xhr.send();
+		}
+
+	</script>
+<div class="esg-table__container">
+<div class="esg-table-actions">
+<div class="esg-h5 esg-table-actions__title">Table Title</div><span class="esg-badge esg-badge--draft">148</span><span class="esg-table-actions__form--right"><span class="esg-table-actions__form-item" id="tableFilter">
+<button class="esg-button esg-button--secondary" type="button">Action</button></span><span class="esg-table-actions__form-item--mobile">
+<button class="esg-icon__container--outline" id="tableSearchToggle" type="button">
+<svg class="esg-icon esg-icon--small">
+<use xlink:href="#icon-settings"></use>
+</svg>
+</button></span><span class="esg-table-actions__form-item" id="tableSearch">
+<div class="esg-form__group">
+<div class="esg-form__input-group">
+<input class="esg-form__input" type="search" placeholder="Search..." aria-label="Search Field"/>
+<button class="esg-form__icon esg-icon__container esg-form__icon--submit" role="button">
+<svg class="esg-icon esg-icon--small esg-icon--light">
+<use xlink:href="#icon-search"></use>
+</svg>
+</button>
+<button class="esg-form__icon esg-icon__container esg-form__icon--reset" role="button">
+<svg class="esg-icon esg-icon--small esg-icon--light">
+<use xlink:href="#icon-clear"></use>
+</svg>
+</button>
+</div>
+</div></span><span class="esg-table-actions__form-item--mobile">
+<button class="esg-icon__container--outline" id="tableSearchToggle" type="button">
+<svg class="esg-icon esg-icon--small">
+<use xlink:href="#icon-search"></use>
+</svg>
+</button></span></span>
+</div>
+<table class="esg-table">
+<thead class="esg-table-head">
+<tr class="esg-table-head__row">
+<th class="esg-table-head__th esg-dropdown esg-is-active">
+<button class="esg-table-head__button esg-dropdown__toggle" id="dataTableFilter1" data-placeholder="false" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Cost Center</button>
+<ul class="esg-dropdown__menu" aria-labelledby="dataTableFilter1">
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Ascending</a></li>
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Descending</a></li>
+<li class="esg-dropdown__menu-item">
+<input id="th1checkbox1" type="checkbox" value="Cost Center" checked="checked"/>
+<label for="th1checkbox1"> Cost Center</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th2checkbox1" type="checkbox" value="Date" checked="checked"/>
+<label for="th2checkbox1"> Date</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th3checkbox1" type="checkbox" value="Amount" checked="checked"/>
+<label for="th3checkbox1"> Amount</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th4checkbox1" type="checkbox" value="Vendor" checked="checked"/>
+<label for="th4checkbox1"> Vendor</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th5checkbox1" type="checkbox" value="Status" checked="checked"/>
+<label for="th5checkbox1"> Status</label>
+</li>
+</ul>
+</th>
+<th class="esg-table-head__th esg-dropdown">
+<button class="esg-table-head__button esg-dropdown__toggle" id="dataTableFilter2" data-placeholder="false" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Date</button>
+<ul class="esg-dropdown__menu" aria-labelledby="dataTableFilter2">
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Ascending</a></li>
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Descending</a></li>
+<li class="esg-dropdown__menu-item">
+<input id="th1checkbox2" type="checkbox" value="Cost Center" checked="checked"/>
+<label for="th1checkbox2"> Cost Center</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th2checkbox2" type="checkbox" value="Date" checked="checked"/>
+<label for="th2checkbox2"> Date</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th3checkbox2" type="checkbox" value="Amount" checked="checked"/>
+<label for="th3checkbox2"> Amount</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th4checkbox2" type="checkbox" value="Vendor" checked="checked"/>
+<label for="th4checkbox2"> Vendor</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th5checkbox2" type="checkbox" value="Status" checked="checked"/>
+<label for="th5checkbox2"> Status</label>
+</li>
+</ul>
+</th>
+<th class="esg-table-head__th esg-dropdown">
+<button class="esg-table-head__button esg-dropdown__toggle" id="dataTableFilter3" data-placeholder="false" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Amount</button>
+<ul class="esg-dropdown__menu" aria-labelledby="dataTableFilter3">
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Ascending</a></li>
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Descending</a></li>
+<li class="esg-dropdown__menu-item">
+<input id="th1checkbox3" type="checkbox" value="Cost Center" checked="checked"/>
+<label for="th1checkbox3"> Cost Center</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th2checkbox3" type="checkbox" value="Date" checked="checked"/>
+<label for="th2checkbox3"> Date</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th3checkbox3" type="checkbox" value="Amount" checked="checked"/>
+<label for="th3checkbox3"> Amount</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th4checkbox3" type="checkbox" value="Vendor" checked="checked"/>
+<label for="th4checkbox3"> Vendor</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th5checkbox3" type="checkbox" value="Status" checked="checked"/>
+<label for="th5checkbox3"> Status</label>
+</li>
+</ul>
+</th>
+<th class="esg-table-head__th esg-dropdown" colspan="2">
+<button class="esg-table-head__button esg-dropdown__toggle" id="dataTableFilter4" data-placeholder="false" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Vendor</button>
+<ul class="esg-dropdown__menu" aria-labelledby="dataTableFilter4">
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Ascending</a></li>
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Descending</a></li>
+<li class="esg-dropdown__menu-item">
+<input id="th1checkbox4" type="checkbox" value="Cost Center" checked="checked"/>
+<label for="th1checkbox4"> Cost Center</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th2checkbox4" type="checkbox" value="Date" checked="checked"/>
+<label for="th2checkbox4"> Date</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th3checkbox4" type="checkbox" value="Amount" checked="checked"/>
+<label for="th3checkbox4"> Amount</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th4checkbox4" type="checkbox" value="Vendor" checked="checked"/>
+<label for="th4checkbox4"> Vendor</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th5checkbox4" type="checkbox" value="Status" checked="checked"/>
+<label for="th5checkbox4"> Status</label>
+</li>
+</ul>
+</th>
+<th class="esg-table-head__th esg-dropdown">
+<button class="esg-table-head__button esg-dropdown__toggle" id="dataTableFilter5" data-placeholder="false" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Status</button>
+<ul class="esg-dropdown__menu" aria-labelledby="dataTableFilter5">
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Ascending</a></li>
+<li class="esg-dropdown__menu-item"><a class="esg-dropdown__link">Sort Descending</a></li>
+<li class="esg-dropdown__menu-item">
+<input id="th1checkbox5" type="checkbox" value="Cost Center" checked="checked"/>
+<label for="th1checkbox5"> Cost Center</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th2checkbox5" type="checkbox" value="Date" checked="checked"/>
+<label for="th2checkbox5"> Date</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th3checkbox5" type="checkbox" value="Amount" checked="checked"/>
+<label for="th3checkbox5"> Amount</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th4checkbox5" type="checkbox" value="Vendor" checked="checked"/>
+<label for="th4checkbox5"> Vendor</label>
+</li>
+<li class="esg-dropdown__menu-item">
+<input id="th5checkbox5" type="checkbox" value="Status" checked="checked"/>
+<label for="th5checkbox5"> Status</label>
+</li>
+</ul>
+</th>
+</tr>
+</thead>
+<tbody class="esg-table-body">
+<tr class="esg-table-body__row">
+<td class="esg-table-body__td">R218010982</td>
+<td class="esg-table-body__td">8/23/15</td>
+<td class="esg-table-body__td">$380.87</td>
+<td class="esg-table-body__td" colspan="2"> Utah Valley Biological Resources</td>
+<td class="esg-table-body__td"><span class="esg-label esg-label--draft">Draft </span><span class="esg-table__icon--detail esg-icon__container" aria-hidden="true">
+<svg class="esg-icon esg-icon--up">
+<use xlink:href="#icon-more"></use>
+</svg></span></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</body>
+</html>

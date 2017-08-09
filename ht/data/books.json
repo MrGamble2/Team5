@@ -1,7 +1,7 @@
 [
 	{
 		"title": "Book Title 1",
-		"id":	"CS310",
+		"id":	"CS300",
 		"condition": "Good",
 		"price": 60,
 		"seller": "ShengTa"
